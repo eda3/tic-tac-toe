@@ -33,6 +33,18 @@ class Board:
             raise Exception("記法が正しくありません")
 
         # 数値部分だけを抜き取る
-        squares_string: str = (notation[1:4] + notation[5:8] + notation[9:12])
+        squares_string: str = notation[1:4] + notation[5:8] + notation[9:12]
 
         return Board(squares_string)
+
+    def to_notation(self) -> str:
+        """ Boardオブジェクト -> 記法の変換"""
+        return (
+            "["
+            + self._squares_string[0:3]
+            + ","
+            + self._squares_string[3:6]
+            + ","
+            + self._squares_string[6:9]
+            + "]"
+        )

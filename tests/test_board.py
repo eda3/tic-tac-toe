@@ -20,3 +20,9 @@ def test_from_notation():
     # 引数が正しい場合、数値部分を含むBoardインスタンスが返却される
     new_board = board.from_notation("[123,456,789]")
     assert new_board.squares_string == "123456789"
+
+
+def test_to_notation():
+    board = Board("123456789")
+
+    assert board.to_notation() == "[123,456,789]"
