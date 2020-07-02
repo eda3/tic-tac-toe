@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import re
 from re import Match, Pattern
 from typing import Optional
@@ -28,3 +30,25 @@ class FillAction:
         is_match: Optional[Match] = pattern.match(notation)
 
         return True if is_match else False
+
+    @staticmethod
+    def from_notation(notation: str) -> FillAction:
+        """ アクション記法(x:c1) -> FillActionオブジェクトの変換"""
+
+        # 記法の入力チェック
+        if FillAction.is_valid_notation(notation) is False:
+            raise Exception("記法が正しくありません")
+
+        # 一文字目から、o or xを取得
+        player_char = notation[0]
+
+        # 三文字目から、行番号を取得
+        row_num = {"a": 0, "b": 1, "c": 2}[notation[2]]
+
+        # 4文字目から列番号を取得
+        col_num = int(notation[3]) - 1
+
+        # 盤面全体のインデックス番号を取得
+        square_index = row_num * 3 + col_num
+
+        return FillAction(player_char, square_index)

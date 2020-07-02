@@ -31,3 +31,17 @@ def test_is_valid_notation():
 
     is_match: bool = FillAction.is_valid_notation("o:c3")
     assert is_match
+
+
+def test_from_notation():
+    fa: FillAction = FillAction.from_notation("x:a1")
+    assert fa._player_char == "x"
+    assert fa._square_index == 0
+
+    fa: FillAction = FillAction.from_notation("o:b2")
+    assert fa._player_char == "o"
+    assert fa._square_index == 4
+
+    fa: FillAction = FillAction.from_notation("o:c3")
+    assert fa._player_char == "o"
+    assert fa._square_index == 8
