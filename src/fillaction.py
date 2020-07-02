@@ -52,3 +52,11 @@ class FillAction:
         square_index = row_num * 3 + col_num
 
         return FillAction(player_char, square_index)
+
+    def to_notation(self) -> str:
+        """FillAction -> アクション記法(x:c1)に変換"""
+        row_num = self._square_index // 3
+        row_alphabet = ["a", "b", "c"][row_num]
+        col_num = self._square_index % 3 + 1
+
+        return f"{self._player_char}:{row_alphabet}{col_num}"

@@ -45,3 +45,11 @@ def test_from_notation():
     fa: FillAction = FillAction.from_notation("o:c3")
     assert fa._player_char == "o"
     assert fa._square_index == 8
+
+
+def test_to_notation():
+    fa = FillAction.from_notation("x:a1")
+    assert fa.to_notation() == "x:a1"
+
+    fa = FillAction("o", 1)
+    assert fa.to_notation() == "o:a2"
