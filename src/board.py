@@ -5,18 +5,12 @@ from re import Pattern
 
 
 class Board:
-    def __init__(self, squares_string):
+    _squares_string: str
+
+    def __init__(self, squares_string: str) -> None:
         if len(squares_string) != 9:
             raise Exception("Boardクラスの初期化は9文字でなければなりません。")
         self._squares_string = squares_string
-
-    @property
-    def squares_string(self):
-        pass
-
-    @squares_string.getter
-    def squares_string(self):
-        return self._squares_string
 
     @staticmethod
     def is_valid_notation(notation: str) -> bool:
