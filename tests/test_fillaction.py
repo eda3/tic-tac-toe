@@ -20,3 +20,14 @@ def test_init():
         FillAction("1", -1)
 
     assert str(e.value) == "指定番号は0から8の間でなければなりません"
+
+
+def test_is_valid_notation():
+    is_match: bool = FillAction.is_valid_notation("x:a1")
+    assert is_match
+
+    is_match: bool = FillAction.is_valid_notation("o:b2")
+    assert is_match
+
+    is_match: bool = FillAction.is_valid_notation("o:c3")
+    assert is_match
