@@ -11,7 +11,7 @@ class GameState:
 
     @staticmethod
     def initial() -> GameState:
-        board = Board.from_notation("[---,---,---]")
+        board = Board.from_notation("[123,456,789]")
         return GameState(board)
 
 

@@ -5,4 +5,4 @@ from gamestate import GameState
 
 def test_initial():
     gs = GameState.initial()
-    assert gs.board.to_notation() == "[---,---,---]"
+    assert gs.board.to_notation() == "[123,456,789]"
