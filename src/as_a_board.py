@@ -32,6 +32,24 @@ def main() -> None:
     game_state: GameState = GameState.initial()
     print(display_board(game_state.board))
 
+    # ユーザアクションを取得
+    input_action: str = input()
+
+    # "quit"入力で修了
+    while input_action != "quit":
+        # 盤面記法が書かれたらゲームの状態を指定通りにリセット
+        if Board.is_valid_notation(input_action):
+            # 入力アクションを元にゲーム状態を生成
+            board = Board.from_notation(input_action)
+            game_state = GameState(board)
+
+            # コンソールに盤面出力
+            print(display_board(game_state.board))
+            input_action = input()
+        else:
+            print("正しい値を入力してください")
+            input_action = input()
+
 
 if __name__ == "__main__":
     main()
