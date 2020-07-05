@@ -13,7 +13,3 @@ class GameState:
     def initial() -> GameState:
         board = Board.from_notation("[123,456,789]")
         return GameState(board)
-
-
-gs = GameState.initial()
-print(f"{gs=}")
