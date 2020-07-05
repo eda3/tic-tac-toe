@@ -2,10 +2,13 @@ from __future__ import annotations
 
 import re
 from re import Match, Pattern
-from typing import Optional
+from typing import List, Optional
 
 from board import Board
 from gamestate import GameState
+from setup_logger import setup_logger
+
+logger = setup_logger(__name__)
 
 
 class FillAction:
@@ -60,3 +63,18 @@ class FillAction:
         col_num = self._square_index % 3 + 1
 
         return f"{self._player_char}:{row_alphabet}{col_num}"
+
+    def apply_to(self, state: GameState):
+        """アクションの適用（適用前の状態をもとに適用後の状態に返す"""
+        square_chars_list: List = list(state.board.squares_string)
+
+        # 指定位置番号を"o" or "x"に置き換える
+        i: int = self._square_index
+        square_chars_list[i] = self._player_char
+
+        # リストを文字列に変換
+        new_square_chars = "".join(square_chars_list)
+
+        # 新しい文字列をもとに適用後の状態を返却
+        new_board = Board(new_square_chars)
+        return GameState(new_board)

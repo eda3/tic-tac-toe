@@ -1,5 +1,6 @@
 import pytest
 from fillaction import FillAction
+from gamestate import GameState
 
 
 def test_init():
@@ -53,3 +54,18 @@ def test_to_notation():
 
     fa = FillAction("o", 1)
     assert fa.to_notation() == "o:a2"
+
+
+def test_apply_to():
+    # 二行目三列目にxを配置
+    gs: GameState = GameState.initial()
+    fa: FillAction = FillAction.from_notation("x:a3")
+    gs: GameState = fa.apply_to(gs)
+    update_board_str = "[12x,456,789]"
+    assert gs.board.to_notation() == update_board_str
+
+    # 続いて、一行目二列目にoを配置
+    fa: FillAction = FillAction.from_notation("o:b1")
+    gs: GameState = fa.apply_to(gs)
+    update_board_str = "[12x,o56,789]"
+    assert gs.board.to_notation() == update_board_str
