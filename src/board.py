@@ -5,12 +5,12 @@ from re import Pattern
 
 
 class Board:
-    _squares_string: str
+    squares_string: str
 
     def __init__(self, squares_string: str) -> None:
         if len(squares_string) != 9:
             raise Exception("Boardクラスの初期化は9文字でなければなりません。")
-        self._squares_string = squares_string
+        self.squares_string = squares_string
 
     @staticmethod
     def is_valid_notation(notation: str) -> bool:
@@ -35,10 +35,10 @@ class Board:
         """ Boardオブジェクト -> 記法の変換"""
         return (
             "["
-            + self._squares_string[0:3]
+            + self.squares_string[0:3]
             + ","
-            + self._squares_string[3:6]
+            + self.squares_string[3:6]
             + ","
-            + self._squares_string[6:9]
+            + self.squares_string[6:9]
             + "]"
         )
