@@ -1,4 +1,5 @@
 from board import Board
+from fillaction import FillAction
 from gamestate import GameState
 from setup_logger import setup_logger
 
@@ -45,10 +46,18 @@ def main() -> None:
 
             # コンソールに盤面出力
             print(display_board(game_state.board))
-            input_action = input()
+
+        # 棋譜記法が書かれたらゲームの状態に適用
+        elif FillAction.is_valid_notation(input_action):
+            action: FillAction = FillAction.from_notation(input_action)
+            game_state: GameState = action.apply_to(game_state)
+
+            # コンソールに盤面出力
+            print(display_board(game_state.board))
         else:
             print("正しい値を入力してください")
-            input_action = input()
+
+        input_action = input()
 
 
 if __name__ == "__main__":
