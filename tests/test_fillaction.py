@@ -61,11 +61,11 @@ def test_apply_to():
     gs: GameState = GameState.initial()
     fa: FillAction = FillAction.from_notation("x:a3")
     gs: GameState = fa.apply_to(gs)
-    update_board_str = "[12x,456,789]"
+    update_board_str = "[--x,---,---]"
     assert gs.board.to_notation() == update_board_str
 
     # 続いて、一行目二列目にoを配置
     fa: FillAction = FillAction.from_notation("o:b1")
     gs: GameState = fa.apply_to(gs)
-    update_board_str = "[12x,o56,789]"
+    update_board_str = "[--x,o--,---]"
     assert gs.board.to_notation() == update_board_str
